@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/benz/!svn/ver/72/source/src/com/shl/benz/base
+END
+BaseMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/benz/!svn/ver/27/source/src/com/shl/benz/base/BaseMapper.java
+END
+PageBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/benz/!svn/ver/2/source/src/com/shl/benz/base/PageBean.java
+END
+BaseWeChatAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/benz/!svn/ver/52/source/src/com/shl/benz/base/BaseWeChatAction.java
+END
+BaseAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/benz/!svn/ver/3/source/src/com/shl/benz/base/BaseAction.java
+END
+MapPair.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/benz/!svn/ver/2/source/src/com/shl/benz/base/MapPair.java
+END
+BackData.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/benz/!svn/ver/2/source/src/com/shl/benz/base/BackData.java
+END
+NotFoundAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/benz/!svn/ver/2/source/src/com/shl/benz/base/NotFoundAction.java
+END
+BaseService.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/benz/!svn/ver/72/source/src/com/shl/benz/base/BaseService.java
+END
+AjaxBaseAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/benz/!svn/ver/2/source/src/com/shl/benz/base/AjaxBaseAction.java
+END
+SearchCondition.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/benz/!svn/ver/2/source/src/com/shl/benz/base/SearchCondition.java
+END

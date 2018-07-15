@@ -1,0 +1,30 @@
+package com.shl.benz.weixin.job;
+
+import org.apache.log4j.Logger;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+import com.shl.benz.weixin.msg.pojo.AccessToken;
+import com.shl.benz.weixin.utils.WeiXinUtil;
+
+@Component
+public class WeChatTokenJob {
+
+	// 微信凭证
+	public static String appid = "";
+	// 微信凭证密钥
+	public static String appsecret = "";
+	
+	//公众号微信号
+	public static String myusername = "";
+
+	// accsstoken
+	public static AccessToken token;
+
+	@Scheduled(cron = "0 0 0/1 * * *")
+	public void reloadToken() {
+		Logger.getLogger(WeChatTokenJob.class).error("reloadToken ------------------  ");
+		token = WeiXinUtil.getAccessToken(appid, appsecret);
+	}
+
+}

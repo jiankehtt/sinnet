@@ -1,0 +1,19 @@
+package com.shl.benz.weixin.msg.pojo;
+
+/**
+ * 按钮基类
+ * @author John
+ *
+ */
+public class Button {
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+}

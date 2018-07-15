@@ -1,0 +1,13 @@
+package com.shl.benz.service;
+
+import org.springframework.stereotype.Service;
+
+import com.shl.benz.base.BaseService;
+import com.shl.benz.database.dao.IndustryOptionMapper;
+import com.shl.benz.database.model.IndustryOption;
+
+@Service
+public class IndustryOptionService extends BaseService<IndustryOption, String, IndustryOptionMapper>{
+	
+
+}

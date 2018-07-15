@@ -1,0 +1,84 @@
+package com.shl.benz.weixin.utils;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.shl.benz.weixin.job.WeChatTokenJob;
+import com.shl.benz.weixin.msg.pojo.AccessToken;
+import com.shl.benz.weixin.msg.pojo.Button;
+import com.shl.benz.weixin.msg.pojo.ComplexButton;
+import com.shl.benz.weixin.msg.pojo.Menu;
+import com.shl.benz.weixin.msg.pojo.ViewButton;
+
+public class MenuManager {
+	private static Logger logger = LoggerFactory.getLogger(MenuManager.class);
+
+	public static void main(String args[]) {
+		AccessToken accessToken = WeiXinUtil.getAccessToken(
+				WeChatTokenJob.appid, WeChatTokenJob.appsecret);
+
+		if (null != accessToken) {
+			int result = WeiXinUtil.createMenu(getMenu(), accessToken
+					.getToken());
+
+			if (0 == result) {
+				logger.info("创建菜单成功");
+			} else {
+				logger.info("创建菜单失败  errcode:{}", result);
+			}
+
+		}
+	}
+
+	/**
+	 * 创建menu对象
+	 * 
+	 * @return
+	 */
+	private static Menu getMenu() {
+		String oahthUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="
+				+ WeChatTokenJob.appid + "&redirect_uri=";
+		String params = "&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
+		String app_url0 = "";
+		String app_url1 = "";
+		String app_url2 = "";
+
+		try {
+			app_url0 = URLEncoder
+					.encode(
+							"http://zettabyter.ifuelcool.com/benz/front/agency-index.do",
+							"utf-8");
+			app_url1 = URLEncoder
+					.encode(
+							"http://zettabyter.ifuelcool.com/benz/front/doortest-toDoorTest.do",
+							"utf-8");
+			app_url2 = URLEncoder
+					.encode(
+							"http://zettabyter.ifuelcool.com/benz/front/signup-toSignUp.do",
+							"utf-8");
+		} catch (UnsupportedEncodingException e) {
+			logger.error("url编码错误 {}", e);
+		}
+
+		ViewButton btn0 = new ViewButton();
+		btn0.setType("view");
+		btn0.setName("保修员信息");
+		btn0.setUrl(oahthUrl + app_url0 + params);
+		ViewButton btn1 = new ViewButton();
+		btn1.setType("view");
+		btn1.setName("入门测试");
+		btn1.setUrl(oahthUrl + app_url1 + params);
+		ViewButton btn2 = new ViewButton();
+		btn2.setType("view");
+		btn2.setName("培训预报名");
+		btn2.setUrl(oahthUrl + app_url2 + params);
+
+		Menu menu = new Menu();
+		menu.setButton(new Button[] { btn0, btn1, btn2 });
+
+		return menu;
+	}
+}

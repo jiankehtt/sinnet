@@ -1,0 +1,119 @@
+package com.shl.benz.base;
+
+
+public class SearchCondition {
+
+	// 属性名称
+	private String name;
+	
+	// 指定的条件(大于、等于...)
+	private Option option;
+	
+	// 属性值
+	private String value;
+
+	// 类型
+	private Type type;
+
+	public SearchCondition() {
+	}
+
+	public SearchCondition(String name, Option option, String value, Type type) {
+		this.name = name;
+		this.option = option;
+		this.value = value;
+		this.type = type;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	public Option getOption() {
+		return option;
+	}
+
+	public void setOption(Option option) {
+		this.option = option;
+	}
+
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
+	}
+
+
+	/**
+	 * 
+	 * 版权 @Copyright: 2014 华夏天天教育科技有限公司. All rights reserved.<br/>
+	 * 项目名称：msgAdminNew<br/>
+	 * 文件名称： SearchCondition.java<br/>
+	 * 包名：com.ttedu.base.search<br/>
+	 * 类名称：Option<br/>
+	 * 类描述：搜索匹配模式<br/>
+	 * 版本：version 1.0<br/>
+	 * 创建人：刘晗<br/>
+	 * 创建时间：2014-11-7/下午01:53:05<br/>
+	 * 修改人：刘晗<br/>
+	 * 修改时间：2014-11-7/下午01:53:05<br/>
+	 * 修改备注：<br/>
+	 */
+	public static enum Option {
+		LIKE_PRIFIX("-%"),	// 前缀like,	'z%'
+		LIKE_SUFFIX("%-"),	// 后缀like,	'%z'
+		LIKE("%-%"), 		// 全局like,	'%z%'
+		EQ("="), 			// 等于,		=
+		NOT_EQ("!="), 		// 不等于,	!=
+		BIGGER(">"), 		// 大于,		>
+		BIGGER_EQ(">="), 	// 大于等于,	>=
+		SMALLER("<"), 		// 小于,		<
+		SMALLER_EQ("<=")	// 小于等于,	<=
+		;
+		private String op;
+
+		private Option(String op) {
+			this.op = op;
+		}
+		
+		public String getOp(){
+			return op;
+		}
+	}
+	
+	/**
+	 * 
+	 * 版权 @Copyright: 2014 华夏天天教育科技有限公司. All rights reserved.<br/>
+	 * 项目名称：msgAdminNew<br/>
+	 * 文件名称： SearchCondition.java<br/>
+	 * 包名：com.ttedu.base.search<br/>
+	 * 类名称：Type<br/>
+	 * 类描述：搜索数据类型<br/>
+	 * 版本：version 1.0<br/>
+	 * 创建人：刘晗<br/>
+	 * 创建时间：2014-11-7/下午01:53:42<br/>
+	 * 修改人：刘晗<br/>
+	 * 修改时间：2014-11-7/下午01:53:42<br/>
+	 * 修改备注：<br/>
+	 */
+	public static enum Type{
+		TEXT, 		// 字符串
+		INT, 		// 整数
+		DOUBLE, 	// 带小数
+		TIME		// 时间类型
+	}
+}

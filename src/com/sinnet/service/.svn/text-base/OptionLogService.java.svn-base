@@ -1,0 +1,73 @@
+package com.shl.benz.service;
+
+import java.util.List;
+import java.util.UUID;
+
+import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.shl.benz.base.BaseService;
+import com.shl.benz.database.dao.OptionLogMapper;
+import com.shl.benz.database.model.OptionLog;
+import com.shl.benz.service.bean.UserManagerInfo;
+import com.shl.benz.utils.DateUtils;
+
+@Service
+public class OptionLogService extends BaseService<OptionLog,String,OptionLogMapper>{
+
+	@Autowired
+	private OptionLogMapper logMapper;
+	
+	private boolean enableLog = true;
+
+	/**
+	 * 
+	 * 标题: recordLog 
+	 * 描述: 记录日志
+	 * @param sp
+	 * @param opaction
+	 */
+	public void recordLog(UserManagerInfo sp, String opaction) {
+		if (enableLog) {
+			if (opaction == null)
+				opaction = "";
+			OptionLog log = new OptionLog();
+			log.setLogno(UUID.randomUUID().toString());
+			log.setUsername(sp.getUsername());
+			log.setOptime(DateUtils.getCurrentDateString(DateUtils.DATETIME_PATTERN24H));
+			log.setOptype("3");
+			log.setOpaction(opaction);
+			log.setOpcontent("");
+			log.setOpsource(ServletActionContext.getRequest().getQueryString());
+			log.setOpip(sp.getIp());
+
+			logMapper.insert(log);
+		}
+	}
+	
+	/**
+	 * 
+	 * 标题: newLog 
+	 * 描述: 记录日志 
+	 * @param log
+	 */
+	public void newLog(OptionLog log){
+		if (enableLog) {
+			logMapper.insert(log);
+		}
+	}
+	
+	public boolean isEnableLog() {
+		return enableLog;
+	}
+
+	public void setEnableLog(boolean enableLog) {
+		this.enableLog = enableLog;
+	}
+
+	public List<OptionLog> loadAll() {
+		return getMapper().selectAll();
+	}
+	
+}

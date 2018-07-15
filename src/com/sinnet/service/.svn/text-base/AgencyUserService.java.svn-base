@@ -1,0 +1,75 @@
+package com.shl.benz.service;
+
+import org.springframework.stereotype.Service;
+
+import com.alibaba.fastjson.JSON;
+import com.shl.benz.base.BaseService;
+import com.shl.benz.base.exception.AppException;
+import com.shl.benz.database.dao.AgencyUserMapper;
+import com.shl.benz.database.model.AgencyUser;
+import com.shl.benz.utils.RandomGUID;
+import com.shl.benz.weixin.job.WeChatTokenJob;
+import com.shl.benz.weixin.msg.pojo.UserInfo;
+import com.shl.benz.weixin.utils.WeiXinUtil;
+
+@Service
+public class AgencyUserService extends
+		BaseService<AgencyUser, String, AgencyUserMapper> {
+
+	public void saveUser(AgencyUser user) {
+		getMapper().insertSelective(user);
+	}
+
+	public AgencyUser getByOpenId(String openid) {
+		return getMapper().getUserByOpenId(openid);
+	}
+
+	public void saveUserByOpenId(String openid) {
+		AgencyUser user = new AgencyUser();
+		user.setUserid(RandomGUID.getGUID());
+		user.setWechatOpenid(openid);
+		getMapper().insertSelective(user);
+	}
+
+	public void cancelUserByOpenId(String openid) {
+		logger.error("user cancel attion");
+		// do noting
+	}
+
+	public AgencyUser loadFromWeChatAndUpdateUser(String code) {
+		UserInfo userInfo = WeiXinUtil.getUserInfo(code, WeChatTokenJob.appid,
+				WeChatTokenJob.appsecret);
+		AgencyUser user = null;
+		if (userInfo != null) {
+			user = getByOpenId(userInfo.getOpenId());
+			try {
+				if (user != null) {
+					saveUserInfo(userInfo, user, false);
+				} else {
+					AgencyUser newUser = new AgencyUser();
+					newUser.setUserid(RandomGUID.getGUID());
+					saveUserInfo(userInfo, newUser, true);
+					user = newUser;
+				}
+			} catch (AppException e) {
+				logger.error("update user error in toapprove!", e);
+			}
+		}
+		if(userInfo==null){
+			logger.error("userInfo is null : "+ code);
+		}
+		return user;
+	}
+
+	private void saveUserInfo(UserInfo userInfo, AgencyUser user,
+			boolean isInsert) throws AppException {
+		user.setWechatOpenid(userInfo.getOpenId());
+		user.setWechatNickname(userInfo.getNikeName());
+		user.setWechatCity(userInfo.getCity());
+		user.setWechatHeadimgurl(userInfo.getHeadimgUrl());
+		user.setWechatProvince(userInfo.getProvince());
+		user.setWechatSex(Byte.valueOf(userInfo.getSex()));
+		user.setWechatCountry(userInfo.getCountry());
+		this.saveSelective(user, isInsert);
+	}
+}

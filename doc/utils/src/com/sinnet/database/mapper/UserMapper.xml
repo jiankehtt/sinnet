@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sinnet.database.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.sinnet.database.model.User" >
+    <id column="guid" property="guid" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="DATE" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="wechat_openid" property="wechatOpenid" jdbcType="VARCHAR" />
+    <result column="wechat_nickname" property="wechatNickname" jdbcType="VARCHAR" />
+    <result column="wechat_sex" property="wechatSex" jdbcType="TINYINT" />
+    <result column="wechat_province" property="wechatProvince" jdbcType="VARCHAR" />
+    <result column="wechat_city" property="wechatCity" jdbcType="VARCHAR" />
+    <result column="wechat_country" property="wechatCountry" jdbcType="VARCHAR" />
+    <result column="wechat_headimgurl" property="wechatHeadimgurl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    guid, company_name, department, username, phone, email, addtime, update_time, wechat_openid, 
+    wechat_nickname, wechat_sex, wechat_province, wechat_city, wechat_country, wechat_headimgurl
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where guid = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user
+    where guid = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sinnet.database.model.User" >
+    insert into user (guid, company_name, department, 
+      username, phone, email, 
+      addtime, update_time, wechat_openid, 
+      wechat_nickname, wechat_sex, wechat_province, 
+      wechat_city, wechat_country, wechat_headimgurl
+      )
+    values (#{guid,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{addtime,jdbcType=DATE}, #{updateTime,jdbcType=TIMESTAMP}, #{wechatOpenid,jdbcType=VARCHAR}, 
+      #{wechatNickname,jdbcType=VARCHAR}, #{wechatSex,jdbcType=TINYINT}, #{wechatProvince,jdbcType=VARCHAR}, 
+      #{wechatCity,jdbcType=VARCHAR}, #{wechatCountry,jdbcType=VARCHAR}, #{wechatHeadimgurl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sinnet.database.model.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        guid,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="wechatOpenid != null" >
+        wechat_openid,
+      </if>
+      <if test="wechatNickname != null" >
+        wechat_nickname,
+      </if>
+      <if test="wechatSex != null" >
+        wechat_sex,
+      </if>
+      <if test="wechatProvince != null" >
+        wechat_province,
+      </if>
+      <if test="wechatCity != null" >
+        wechat_city,
+      </if>
+      <if test="wechatCountry != null" >
+        wechat_country,
+      </if>
+      <if test="wechatHeadimgurl != null" >
+        wechat_headimgurl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wechatOpenid != null" >
+        #{wechatOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatNickname != null" >
+        #{wechatNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatSex != null" >
+        #{wechatSex,jdbcType=TINYINT},
+      </if>
+      <if test="wechatProvince != null" >
+        #{wechatProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatCity != null" >
+        #{wechatCity,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatCountry != null" >
+        #{wechatCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatHeadimgurl != null" >
+        #{wechatHeadimgurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sinnet.database.model.User" >
+    update user
+    <set >
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wechatOpenid != null" >
+        wechat_openid = #{wechatOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatNickname != null" >
+        wechat_nickname = #{wechatNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatSex != null" >
+        wechat_sex = #{wechatSex,jdbcType=TINYINT},
+      </if>
+      <if test="wechatProvince != null" >
+        wechat_province = #{wechatProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatCity != null" >
+        wechat_city = #{wechatCity,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatCountry != null" >
+        wechat_country = #{wechatCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatHeadimgurl != null" >
+        wechat_headimgurl = #{wechatHeadimgurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sinnet.database.model.User" >
+    update user
+    set company_name = #{companyName,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=DATE},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      wechat_openid = #{wechatOpenid,jdbcType=VARCHAR},
+      wechat_nickname = #{wechatNickname,jdbcType=VARCHAR},
+      wechat_sex = #{wechatSex,jdbcType=TINYINT},
+      wechat_province = #{wechatProvince,jdbcType=VARCHAR},
+      wechat_city = #{wechatCity,jdbcType=VARCHAR},
+      wechat_country = #{wechatCountry,jdbcType=VARCHAR},
+      wechat_headimgurl = #{wechatHeadimgurl,jdbcType=VARCHAR}
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+</mapper>

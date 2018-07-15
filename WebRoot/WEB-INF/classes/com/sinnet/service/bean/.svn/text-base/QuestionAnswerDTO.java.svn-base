@@ -1,0 +1,32 @@
+package com.shl.benz.service.bean;
+
+public class QuestionAnswerDTO {
+	private String name;
+	private String questionId;
+	private String answer;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getQuestionId() {
+		return questionId;
+	}
+
+	public void setQuestionId(String questionId) {
+		this.questionId = questionId;
+	}
+
+	public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+
+}

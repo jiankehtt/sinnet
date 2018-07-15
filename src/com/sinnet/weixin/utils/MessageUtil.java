@@ -1,0 +1,107 @@
+package com.sinnet.weixin.utils;
+
+import java.io.InputStream;
+import java.io.Writer;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.sinnet.weixin.msg.res.ResTextMessage;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.core.util.QuickWriter;
+import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
+import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
+import com.thoughtworks.xstream.io.xml.XppDriver;
+
+/**
+ * 消息工具类
+ * @author John
+ *
+ */
+public class MessageUtil {
+	private static Logger logger = LoggerFactory.getLogger(MessageUtil.class);
+	
+	//事件类型：subscribe (订阅)
+	public static final String EVENT_TYPE_SUBSCRIBE = "subscribe";
+	//事件类型：unsubscribe (取消订阅)
+	public static final String EVENT_TYPE_UNSUBSCRIBE = "unsubscribe";
+	
+	public static Map<String, String> parseXML(HttpServletRequest request){
+		// 解析XML保存到map中
+		Map<String, String> map = new HashMap<String, String>();
+		InputStream inputStream = null;
+		
+		try {
+			inputStream = request.getInputStream();
+			//读取输入流
+			SAXReader reader = new SAXReader();
+			Document document = reader.read(inputStream);
+			
+			Element root = document.getRootElement();
+			List<Element> elements = root.elements();
+			
+			for(Element e: elements){
+				map.put(e.getName(), e.getText());
+			}
+			
+			inputStream.close();
+			inputStream = null;
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			logger.error("解析消息XML出错： {}", e);
+		}
+		
+		return map;
+	}
+	
+	/**
+	 * 响应文本消息转换成xml
+	 * @param resTextMessage
+	 * @return
+	 */
+	public static String resTextMessageToXML(ResTextMessage resTextMessage){
+		xstream.alias("xml", resTextMessage.getClass());
+		return xstream.toXML(resTextMessage);
+	}
+	
+	/**
+	 * 扩展xstream，使其支持CDATA块 
+	 */
+	private static XStream xstream = new XStream(new XppDriver(){
+
+		public HierarchicalStreamWriter createWriter(Writer out) {
+			// TODO Auto-generated method stub
+			return new PrettyPrintWriter(out){
+				//对所有xml节点的转换都增加CDATA标记 
+				boolean cdata = true;
+
+				public void startNode(String name, Class clazz) {
+					// TODO Auto-generated method stub
+					super.startNode(name, clazz);
+				}
+
+				protected void writeText(QuickWriter writer, String text) {
+					// TODO Auto-generated method stub
+					if(cdata) {
+						writer.write("<![CDATA[");
+						writer.write(text);
+						writer.write("]]>");
+					}else{
+						writer.write(text);
+					}
+				}
+				
+			};
+		}
+		
+	});
+}

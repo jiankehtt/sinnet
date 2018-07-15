@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/benz/!svn/ver/46/source/src/com/shl/benz/weixin/utils
+END
+MenuManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/benz/!svn/ver/46/source/src/com/shl/benz/weixin/utils/MenuManager.java
+END
+WeiXinUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/benz/!svn/ver/46/source/src/com/shl/benz/weixin/utils/WeiXinUtil.java
+END
+MessageUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/benz/!svn/ver/46/source/src/com/shl/benz/weixin/utils/MessageUtil.java
+END
+MyX509TrustManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/benz/!svn/ver/46/source/src/com/shl/benz/weixin/utils/MyX509TrustManager.java
+END

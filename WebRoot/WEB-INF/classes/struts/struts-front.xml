@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+ <package name="register" namespace="/front" extends="json-default">
+        <action name="user-*" class="com.sinnet.action.front.UserAction"
+            method="{1}">
+            <result name="success">/WEB-INF/content/regsuccess.jsp</result>
+            <result name="toreg">/WEB-INF/content/reg.jsp</result>
+        </action>
+         <action name="ajaxuser-*" class="com.sinnet.action.front.AjaxUserAction"
+            method="{1}">
+              <result name="backData" type="json">
+                <param name="root">backData</param>
+            </result>
+        </action>
+        <action name="feedback-*" class="com.sinnet.action.front.FeedbackAction"
+            method="{1}">
+            <result name="success">/WEB-INF/content/feedbacksuccess.jsp</result>
+            <result name="tofeedback">/WEB-INF/content/feedback.jsp</result>
+        </action>
+         <action name="ajaxfeedback-*" class="com.sinnet.action.front.AjaxFeedbackAction"
+            method="{1}">
+              <result name="backData" type="json">
+                <param name="root">backData</param>
+            </result>
+        </action>
+         <action name="course-*" class="com.sinnet.action.front.CourseAction"
+            method="{1}">
+            <result name="list">/WEB-INF/content/list.jsp</result>
+        </action>
+    </package>
+    
+     <package name="wechat" namespace="/wechat" extends="json-default">
+        <action name="message-*" class="com.sinnet.action.wechat.WechatAction"
+            method="{1}">
+        </action>
+    </package>
+</struts>

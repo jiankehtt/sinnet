@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.i18n.encoding" value="utf-8" />
+	<constant name="struts.i18n.reload" value="true" />
+	<constant name="struts.multipart.maxSize" value="-1" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.action.extension" value="do" />
+	<constant name="struts.serve.static.browserCache" value="false" />
+	<constant name="struts.locale" value="zh_CN" />
+	<constant name="struts.allowed.action.names" value="[a-zA-Z0-9._!/\-]*"></constant>
+	
+	<package name="basePack" namespace="/" extends="json-default">
+        <interceptors>
+            <interceptor name="loginValid" class="com.sinnet.filters.UserLoginValidInterceptor"></interceptor>
+            <interceptor-stack name="loginValidStack">  
+                <interceptor-ref name="loginValid" />  
+                <interceptor-ref name="defaultStack" />  
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="loginValidStack" />
+        
+        <default-action-ref name="notFound" />
+
+        <global-results>
+            <result name="login" type="redirect">/</result>
+            <result name="error">/error/500.jsp</result>
+        </global-results>
+        
+        <global-exception-mappings>
+            <exception-mapping result="error" exception="java.lang.Throwable"></exception-mapping>
+        </global-exception-mappings>
+
+        <action name="notFound" class="com.sinnet.base.NotFoundAction">
+            <result type="redirect">/error/404.jsp</result>
+        </action>
+        
+    </package>
+	
+	<include file="struts/struts-front.xml"></include>
+	
+</struts>

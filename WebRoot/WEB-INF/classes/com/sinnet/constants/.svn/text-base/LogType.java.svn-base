@@ -1,0 +1,10 @@
+package com.shl.benz.constants;
+
+public interface LogType {
+
+	public final static String SYSTEM_OP = "1"; //系统操作
+	public final static String USER_OP_ADD = "2"; //增加
+	public final static String USER_OP_DELETE = "3"; //删除操作
+	public final static String USER_OP_UPDATE = "4"; //修改操作
+
+}

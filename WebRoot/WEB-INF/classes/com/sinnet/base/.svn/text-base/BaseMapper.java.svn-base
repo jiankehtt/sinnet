@@ -1,0 +1,72 @@
+package com.shl.benz.base;
+
+import java.util.List;
+
+public interface BaseMapper<Bean, PK> {
+
+	/**
+	 * 
+	 * 标题: queryPage 描述: 搜索分页
+	 * 
+	 * @param conditions
+	 *            查询条件
+	 * @param page
+	 *            分页控件
+	 * @return 分页数据
+	 */
+	public List<Bean> queryPage(List<SearchCondition> conditions, PageBean page);
+
+	/**
+	 * 
+	 * 标题: getById 描述: 根据主键获取信息
+	 * 
+	 * @param id
+	 *            主键
+	 * @return
+	 */
+	public Bean selectByPrimaryKey(PK id);
+
+	/**
+	 * 
+	 * 标题: selectAll 描述: 获取所有信息
+	 * 
+	 * @return
+	 */
+	public List<Bean> selectAll();
+
+	/**
+	 * 
+	 * 标题: insert 描述: 添加一条新纪录
+	 * 
+	 * @param bean
+	 */
+	public int insert(Bean bean);
+
+	/**
+	 * 
+	 * 标题: update 描述: 更新记录
+	 * 
+	 * @param bean
+	 */
+	public int updateByPrimaryKey(Bean bean);
+
+	/**
+	 * 
+	 * 标题: deleteById 描述: 根据主键删除记录
+	 * 
+	 * @param id
+	 */
+	public void deleteByPrimaryKey(PK id);
+	
+	/**
+	 * 部分插入数据
+	 * @return
+	 */
+	public int insertSelective(Bean bean);
+
+	/**
+	 * 局部根据主键更新数据
+	 * @return
+	 */
+    public int updateByPrimaryKeySelective(Bean bean);
+}
