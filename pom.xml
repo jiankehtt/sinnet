@@ -3,11 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sinnet</groupId>
-	<artifactId>static</artifactId>
+	<artifactId>wx</artifactId>
 	<version>0.0.12-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>benz</name>
-	<description>benz</description>
+	<name>sinnet</name>
+	<description>sinnet</description>
 	<properties>
 		<spring.version>3.2.0.RELEASE</spring.version>
 		<struts.version>2.3.16</struts.version>

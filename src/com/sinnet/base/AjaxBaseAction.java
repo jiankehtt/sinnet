@@ -2,6 +2,8 @@ package com.sinnet.base;
 
 import java.util.List;
 
+import com.opensymphony.xwork2.ActionContext;
+import com.sinnet.database.model.User;
 import com.sinnet.utils.StringUtils;
 
 @SuppressWarnings("serial")
@@ -26,6 +28,16 @@ public abstract class AjaxBaseAction extends BaseAction{
 		return pageBean;
 	}
 	
+	
+	/**
+	 * 
+	 * 标题: getCurrentUser 描述: 获取当前登录的用户
+	 * 
+	 * @return
+	 */
+	protected User getCurrentUser() {
+		return (User) ActionContext.getContext().getSession().get(FRONT_USERKEY);
+	}
 	
 	public PageBean getPageBean(String orderProp, boolean isAsc){
 		if(pageBean != null && StringUtils.isEmpty(pageBean.getOrderProperty())){

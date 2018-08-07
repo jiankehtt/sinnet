@@ -53,7 +53,7 @@ public class WeiXinUtil {
 	public static JSONObject httpRequest(String requestUrl, String requestMethod, String outputStr){
 		JSONObject jsonObject = null;
 		StringBuffer buffer = new StringBuffer();
-		logger.info("requestUrl:{}", requestUrl);
+		logger.error("requestUrl:{}"+requestUrl);
 		try {
 			//创建SSLContext对象，并使用我们指定的信任管理器初始化 
 			TrustManager[] tm = {new MyX509TrustManager()};
@@ -103,7 +103,7 @@ public class WeiXinUtil {
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			logger.error("https request error:{}", e);
+			logger.error("https request error:{}"+ e.getMessage());
 		}
 		
 		return jsonObject;
@@ -122,7 +122,7 @@ public class WeiXinUtil {
 		
 		try{
 			pAccessToken = getPageAccessToken(appid, appsecret, code);
-			logger.info("网页授权Access_Token: {}", JSONObject.toJSON(pAccessToken));
+			logger.info("网页授权Access_Token: {}"+JSONObject.toJSON(pAccessToken));
 			
 			String requestUrl = user_info_url.replace("OPENID", pAccessToken.getOpenid()).replace("ACCESS_TOKEN", pAccessToken.getAccessToken());
 			JSONObject jsonObj = httpRequest(requestUrl, "GET", null);
@@ -216,7 +216,7 @@ public class WeiXinUtil {
 			pAccessToken.setScope(jsonObj.getString("scope"));
 			pAccessToken.setUinionid(jsonObj.getString("unionid"));
 		}else{
-			logger.error("获取网页授权access_token失败");
+			logger.error("PageAccessToken  access_token is fail");
 		}
 		
 		return pAccessToken;

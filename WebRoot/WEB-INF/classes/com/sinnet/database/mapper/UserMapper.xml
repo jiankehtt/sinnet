@@ -5,6 +5,7 @@
     <id column="guid" property="guid" jdbcType="VARCHAR" />
     <result column="company_name" property="companyName" jdbcType="VARCHAR" />
     <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="industry" property="industry" jdbcType="VARCHAR" />
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
@@ -17,10 +18,12 @@
     <result column="wechat_city" property="wechatCity" jdbcType="VARCHAR" />
     <result column="wechat_country" property="wechatCountry" jdbcType="VARCHAR" />
     <result column="wechat_headimgurl" property="wechatHeadimgurl" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="need" property="need" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     guid, company_name, department, username, phone, email, addtime, update_time, wechat_openid, 
-    wechat_nickname, wechat_sex, wechat_province, wechat_city, wechat_country, wechat_headimgurl
+    wechat_nickname, wechat_sex, wechat_province, wechat_city, wechat_country, wechat_headimgurl,position,need,industry
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -37,13 +40,14 @@
       username, phone, email, 
       addtime, update_time, wechat_openid, 
       wechat_nickname, wechat_sex, wechat_province, 
-      wechat_city, wechat_country, wechat_headimgurl
+      wechat_city, wechat_country, wechat_headimgurl,position,need,industry
       )
     values (#{guid,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, 
       #{username,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{addtime,jdbcType=DATE}, #{updateTime,jdbcType=TIMESTAMP}, #{wechatOpenid,jdbcType=VARCHAR}, 
       #{wechatNickname,jdbcType=VARCHAR}, #{wechatSex,jdbcType=TINYINT}, #{wechatProvince,jdbcType=VARCHAR}, 
-      #{wechatCity,jdbcType=VARCHAR}, #{wechatCountry,jdbcType=VARCHAR}, #{wechatHeadimgurl,jdbcType=VARCHAR}
+      #{wechatCity,jdbcType=VARCHAR}, #{wechatCountry,jdbcType=VARCHAR}, #{wechatHeadimgurl,jdbcType=VARCHAR},
+      #{position,jdbcType=VARCHAR},#{industry,jdbcType=VARCHAR}, #{need,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.sinnet.database.model.User" >
@@ -94,6 +98,15 @@
       <if test="wechatHeadimgurl != null" >
         wechat_headimgurl,
       </if>
+        <if test="position != null" >
+        position,
+      </if>
+        <if test="need != null" >
+        need,
+      </if>
+      <if test="industry != null" >
+        industry,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="guid != null" >
@@ -140,6 +153,15 @@
       </if>
       <if test="wechatHeadimgurl != null" >
         #{wechatHeadimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="need != null" >
+        #{need,jdbcType=VARCHAR},
+      </if>
+       <if test="industry != null" >
+        #{industry,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -188,6 +210,15 @@
       <if test="wechatHeadimgurl != null" >
         wechat_headimgurl = #{wechatHeadimgurl,jdbcType=VARCHAR},
       </if>
+       <if test="position != null" >
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+       <if test="need != null" >
+        need = #{need,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        industry = #{industry,jdbcType=VARCHAR},
+      </if>
     </set>
     where guid = #{guid,jdbcType=VARCHAR}
   </update>
@@ -206,6 +237,9 @@
       wechat_province = #{wechatProvince,jdbcType=VARCHAR},
       wechat_city = #{wechatCity,jdbcType=VARCHAR},
       wechat_country = #{wechatCountry,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      need = #{need,jdbcType=VARCHAR},
+      industry = #{industry,jdbcType=VARCHAR},
       wechat_headimgurl = #{wechatHeadimgurl,jdbcType=VARCHAR}
     where guid = #{guid,jdbcType=VARCHAR}
   </update>

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/benz/!svn/ver/2/source/WebRoot/js/jquery-validation
+END
+jquery.validate.js
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/benz/!svn/ver/2/source/WebRoot/js/jquery-validation/jquery.validate.js
+END
+additional-methods.js
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/benz/!svn/ver/2/source/WebRoot/js/jquery-validation/additional-methods.js
+END
+jquery.validate.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/benz/!svn/ver/2/source/WebRoot/js/jquery-validation/jquery.validate.min.js
+END
+additional-methods.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/benz/!svn/ver/2/source/WebRoot/js/jquery-validation/additional-methods.min.js
+END
+vaildmethods.js
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/benz/!svn/ver/2/source/WebRoot/js/jquery-validation/vaildmethods.js
+END

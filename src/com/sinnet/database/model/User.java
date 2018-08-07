@@ -6,8 +6,11 @@ public class User {
     private String guid;
 
     private String companyName;
+    private String industry;
 
     private String department;
+    private String position;
+    private String need;
 
     private String username;
 
@@ -152,4 +155,31 @@ public class User {
     public void setWechatHeadimgurl(String wechatHeadimgurl) {
         this.wechatHeadimgurl = wechatHeadimgurl == null ? null : wechatHeadimgurl.trim();
     }
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	public String getNeed() {
+		return need;
+	}
+
+	public void setNeed(String need) {
+		this.need = need;
+	}
+
+	public String getIndustry() {
+		return industry;
+	}
+
+	public void setIndustry(String industry) {
+		this.industry = industry;
+	}
+    
+	
+    
 }

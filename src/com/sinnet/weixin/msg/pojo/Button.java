@@ -1,7 +1,7 @@
 package com.sinnet.weixin.msg.pojo;
 
 public class Button {
-	private String name;
+	protected String name;
 
 	public String getName() {
 		return name;

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sinnet.database.dao.FeedbackMapper" >
+  <resultMap id="BaseResultMap" type="com.sinnet.database.model.Feedback" >
+    <id column="feed_id" property="feedId" jdbcType="VARCHAR" />
+    <result column="feed_content" property="feedContent" jdbcType="VARCHAR" />
+    <result column="user_guid" property="userGuid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    feed_id, feed_content, user_guid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from feedback
+    where feed_id = #{feedId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from feedback
+    where feed_id = #{feedId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sinnet.database.model.Feedback" >
+    insert into feedback (feed_id, feed_content, user_guid
+      )
+    values (#{feedId,jdbcType=VARCHAR}, #{feedContent,jdbcType=VARCHAR}, #{userGuid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sinnet.database.model.Feedback" >
+    insert into feedback
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="feedId != null" >
+        feed_id,
+      </if>
+      <if test="feedContent != null" >
+        feed_content,
+      </if>
+      <if test="userGuid != null" >
+        user_guid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="feedId != null" >
+        #{feedId,jdbcType=VARCHAR},
+      </if>
+      <if test="feedContent != null" >
+        #{feedContent,jdbcType=VARCHAR},
+      </if>
+      <if test="userGuid != null" >
+        #{userGuid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sinnet.database.model.Feedback" >
+    update feedback
+    <set >
+      <if test="feedContent != null" >
+        feed_content = #{feedContent,jdbcType=VARCHAR},
+      </if>
+      <if test="userGuid != null" >
+        user_guid = #{userGuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where feed_id = #{feedId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sinnet.database.model.Feedback" >
+    update feedback
+    set feed_content = #{feedContent,jdbcType=VARCHAR},
+      user_guid = #{userGuid,jdbcType=VARCHAR}
+    where feed_id = #{feedId,jdbcType=VARCHAR}
+  </update>
+</mapper>

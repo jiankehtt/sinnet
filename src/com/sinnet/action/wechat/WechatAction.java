@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 
 import com.alibaba.fastjson.JSONObject;
+import com.opensymphony.xwork2.ActionContext;
 import com.sinnet.base.BaseAction;
 import com.sinnet.database.model.User;
 import com.sinnet.service.UserService;
@@ -85,6 +86,7 @@ public class WechatAction extends BaseAction {
 					
 				}else if(event.equals("unsubscribe")){
 					logger.error("cancel_attion_openid"+openid);
+					ActionContext.getContext().getSession().put(FRONT_USERKEY, null);
 				}else{
 					res.setContentType("text/plain;charset=UTF-8");
 					res.setCharacterEncoding("UTF-8");

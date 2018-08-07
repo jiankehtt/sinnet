@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 
 import com.sinnet.base.AjaxBaseAction;
-import com.sinnet.database.model.User;
 import com.sinnet.service.UserService;
-import com.sinnet.utils.RandomGUID;
 
 
 @Scope("prototype")
@@ -20,21 +18,24 @@ public class AjaxUserAction  extends AjaxBaseAction {
 	private String username;
 	private String phone;
 	private String email;
+	private String position;
+	private String need;
 	
 	@Autowired
 	UserService userService;
-	
-	
 
 	public String submit() {
-		User user = new User();
+		user = getCurrentUser();
 		user.setUsername(username);
 		user.setCompanyName(company);
 		user.setDepartment(department);
 		user.setEmail(email);
-		user.setGuid(RandomGUID.getGUID());
 		user.setPhone(phone);
-		userService.saveUser(user);
+		user.setNeed(need);
+		user.setPosition(position);
+		user.setIndustry(industry);
+		userService.saveOrUpdateUser(user);
+		setSucessMessage("保存成功");
 		return BACK_DATA;
 	}
 
@@ -85,5 +86,23 @@ public class AjaxUserAction  extends AjaxBaseAction {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	public String getNeed() {
+		return need;
+	}
+
+	public void setNeed(String need) {
+		this.need = need;
+	}
+	
+	
 	
 }

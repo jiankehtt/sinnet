@@ -20,11 +20,13 @@ public class AjaxFeedbackAction extends AjaxBaseAction {
 
 	
 	public String submit() {
+		user = getCurrentUser();
 		Feedback feedback = new Feedback();
+		feedback.setUserGuid(user.getGuid());
 		feedback.setFeedId(RandomGUID.getGUID());
 		feedback.setFeedContent(feedContent);
 		feedbackService.saveFeedBack(feedback);
-		
+		setSucessMessage("保存成功");
 		return BACK_DATA;
 	}
 

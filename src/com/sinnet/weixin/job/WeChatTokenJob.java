@@ -10,6 +10,9 @@ import com.sinnet.weixin.utils.WeiXinUtil;
 @Component
 public class WeChatTokenJob {
 
+//	public static String appid = "wx223d9d45aa16b9b3";
+//	public static String appsecret = "bfa99c98cf6d28d0e2f6124b9aef4e08";
+//	public static String myusername = "gh_a2c2baa649c7";
 	public static String appid = "wx91df91d669ed9356";
 	public static String appsecret = "60b13ecce22b9b678a5bd9da9d9390a8";
 	public static String myusername = "gh_c4024bdafe55";
